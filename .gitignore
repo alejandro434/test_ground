@@ -30,6 +30,14 @@ wheels/
 os
 sys
 ngrok.yml
+# Heaviest content and build outputs
+src/documents/collections/
+data/
+web/
+.web/
+node_modules/
+**/*.parquet
+**/*.pdf
 
 # ngrok configuration
 ngrok.yml
