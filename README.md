@@ -14,6 +14,12 @@ docker compose up --build -d
 docker compose logs -f
 ```
 
+Service only:
+
+```bash
+docker compose logs -f app
+```
+
 3) Open in browser
 
 - UI: `http://localhost:3000`
@@ -25,7 +31,14 @@ docker compose logs -f
 docker compose down
 ```
 
-Note: Hot reload is enabled via bind mount; dependencies persist in a named volume at `/app/.venv`.
+5) Clean rebuild (also remove virtualenv volume)
+
+```bash
+docker compose down -v
+docker compose up --build -d
+```
+
+Note: Hot reload is enabled via bind mount; dependencies persist in a named volume mounted at `/app/.venv` (`venv` in Docker Compose, `csw_nviro_venv` in plain Docker).
 
 ### Run with plain Docker (optional)
 
@@ -44,6 +57,18 @@ docker run --name csw-nviro-app \
   -v "$(pwd)":/app \
   -v csw_nviro_venv:/app/.venv \
   csw-nviro-app
+```
+
+Stop and remove the container:
+
+```bash
+docker rm -f csw-nviro-app
+```
+
+Remove the named volume (for a clean rebuild):
+
+```bash
+docker volume rm csw_nviro_venv
 ```
 
 Then visit:
