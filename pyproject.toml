@@ -1,0 +1,146 @@
+[project]
+name = "csw-nviro"
+version = "0.1.0"
+description = "multi-agent workflow for the CSW-NVIRO project"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "azure-ai-documentintelligence>=1.0.2",
+    "boto3>=1.40.0",
+    "fastapi>=0.116.1",
+    "fastparquet>=2024.11.0",
+    "ipykernel>=6.30.0",
+    "langchain-anthropic>=0.3.18",
+    "langchain-aws>=0.2.0",
+    "langchain-community>=0.3.27",
+    "langchain-core>=0.3.72",
+    "langchain-google-genai>=2.1.8",
+    "langchain-groq>=0.3.6",
+    "langchain-openai>=0.3.28",
+    "langchain-pinecone>=0.2.11",
+    "langgraph>=0.6.3",
+    "neo4j>=5.28.2",
+    "neo4j-graphrag[cohere]>=1.9.0",
+    "pandas>=2.3.1",
+    "pip>=25.2",
+    "psycopg>=3.2.9",
+    "pyarrow>=21.0.0",
+    "python-dotenv>=1.1.1",
+    "uvicorn>=0.35.0",
+    "scalar-fastapi>=0.5.1",
+    "pypdf>=4.2.0",
+    "pytest>=8.4.1",
+    "sqlalchemy>=2.0",
+    "sshtunnel>=0.4.0",
+    "paramiko<3",
+    "psycopg2-binary>=2.9.10",
+    "marker>=2.1.3",
+    "marker-pdf>=1.5.5",
+    "pymupdf>=1.26.3",
+    "markdownify>=0.13.1",
+    "reflex>=0.8.6",
+    "plotly>=6.3.0",
+    "langgraph-supervisor>=0.0.29",
+]
+
+[tool.ruff]
+# Exclude a variety of commonly ignored directories
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "venv",
+]
+
+# Set line length to 88 (PEP 8 recommendation)
+line-length = 88
+
+# Target Python 3.12
+target-version = "py312"
+
+[tool.ruff.lint]
+# Enable all Pycodestyle (`E`), Pyflakes (`F`), isort (`I`) codes
+# Add more PEP 8 related rules
+select = [
+    "E",   # pycodestyle errors
+    "F",   # pyflakes
+    "I",   # isort
+    "W",   # pycodestyle warnings
+    "C90", # mccabe complexity
+    "N",   # pep8-naming
+    "D",   # pydocstyle
+    "UP",  # pyupgrade
+    "B",   # flake8-bugbear
+    "A",   # flake8-builtins
+    "COM", # flake8-commas (except COM812)
+    "C4",  # flake8-comprehensions
+    "Q",   # flake8-quotes
+    "SIM", # flake8-simplify
+    "TID", # flake8-tidy-imports
+    "ARG", # flake8-unused-arguments
+    "PTH", # flake8-use-pathlib
+    "ERA", # eradicate
+    "RUF", # ruff-specific rules
+]
+
+# Ignore rules that conflict with the formatter
+ignore = ["COM812", "D100", "D104", "D107", "RUF001", "RUF003", "RUF012"]
+
+# Allow autofix for all enabled and fixable rules
+fixable = ["ALL"]
+unfixable = []
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"] # Allow unused imports in __init__.py files
+
+[tool.ruff.lint.isort]
+# Configure isort rules for import organization
+known-first-party = ["src", "dev", "KnowledgeGraphDB"]
+section-order = [
+    "future",
+    "standard-library",
+    "third-party",
+    "first-party",
+    "local-folder",
+]
+combine-as-imports = true
+split-on-trailing-comma = true
+lines-after-imports = 2
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.format]
+# Use double quotes for strings
+quote-style = "double"
+# Indent with 4 spaces
+indent-style = "space"
+line-ending = "auto"
+# Enable formatting long strings
+docstring-code-format = true
+# Always add trailing commas in multi-line comma-separated structures
+skip-magic-trailing-comma = false
+
+[dependency-groups]
+dev = ["ruff>=0.12.7", "yamllint>=1.37.1"]
+
+[tool.ruff.lint.mccabe]
+# Set the maximum complexity to 10
+max-complexity = 10
