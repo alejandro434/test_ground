@@ -41,5 +41,5 @@ node_modules/
 
 # ngrok configuration
 ngrok.yml
-src/documents/collections/pdfs/
-src/documents/collections/pdf/
+src/documents/collections/
+
